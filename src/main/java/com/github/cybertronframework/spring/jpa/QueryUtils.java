@@ -106,12 +106,12 @@ public class QueryUtils {
         } else if (fieldClass.isEnum()) {
             Properties parameters = new Properties();
             parameters.put(EnumType.ENUM, fieldClass.getName());
-            parameters.put(EnumType.NAMED, false);
 
             Enumerated enumerated = field.getAnnotation(Enumerated.class);
             if (enumerated != null && enumerated.value() == javax.persistence.EnumType.STRING) {
-                parameters.put(EnumType.TYPE, String.valueOf(Types.VARCHAR));
+                parameters.put(EnumType.NAMED, true);
             } else {
+                parameters.put(EnumType.NAMED, false);
                 parameters.put(EnumType.TYPE, String.valueOf(Types.SMALLINT));
             }
 
